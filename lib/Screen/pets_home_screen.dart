@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pet/Model/pets_models.dart';
+import 'package:pet/Screen/detail_screen.dart';
 
 class PetsHomeScreen extends StatefulWidget {
   const PetsHomeScreen({super.key});
@@ -75,7 +76,18 @@ class _PetsHomeScreenState extends State<PetsHomeScreen> {
                         itemCount: categoryList[selectedIndex].length,
                         itemBuilder: (context, index) {
                           return GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (context) => DetailScreen(
+                                        pets:
+                                            categoryList[selectedIndex][index],
+                                      ),
+                                ),
+                              );
+                            },
                             child: Padding(
                               padding: EdgeInsets.only(top: 30, right: 15),
                               child: Row(
@@ -136,8 +148,10 @@ class _PetsHomeScreenState extends State<PetsHomeScreen> {
                                         child: Padding(
                                           padding: EdgeInsets.only(left: 15),
                                           child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            crossAxisAlignment:CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Text(
                                                 categoryList[selectedIndex][index]
@@ -237,9 +251,9 @@ class _PetsHomeScreenState extends State<PetsHomeScreen> {
                         categoryList[index],
                         style: TextStyle(
                           color:
-                          selectedIndex == index
-                              ? Colors.white
-                              : Colors.amber[900],
+                              selectedIndex == index
+                                  ? Colors.white
+                                  : Colors.amber[900],
                           fontWeight:
                               selectedIndex == index
                                   ? FontWeight.bold
